@@ -1,0 +1,26 @@
+{
+    "telemetry.enableTelemetry": false,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 500,
+    "editor.wordWrap": "on",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "terminal.integrated.fontFamily": "Hack Nerd Font Regular",
+    "terminal.integrated.fontSize": 13,
+    "html.format.wrapLineLength": 0,
+    "html.suggest.angular1": false,
+    "html.suggest.ionic": false,
+    "prettier.stylelintIntegration": true,
+    "stylelint.enable": true,
+    "javascript.validate.enable": false,
+    "prettier.disableLanguages": [
+        "javascript",
+        "javascriptreact",
+        "json"
+    ],
+    "standard.autoFixOnSave": true,
+    "standard.validate": [
+      "javascript",
+      "javascriptreact"
+    ],
+}

@@ -1,0 +1,40 @@
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+# Load Nerd Fonts with Powerlevel9k theme for Zsh
+POWERLEVEL9K_MODE='nerdfont-complete'
+source ~/.oh-my-zsh/custom/themes/powerlevel9k/powerlevel9k.zsh-theme
+
+# Customise the Powerlevel9k prompts
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh dir vcs newline status)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+
+# @see https://github.com/GabLeRoux/iterm2-macos-dynamic-profile / https://stackoverflow.com/a/29403520/1092815
+
+# changes hex 0x15 to delete everything to the left of the cursor,
+# rather than the whole line
+bindkey "^U" backward-kill-line
+
+# binds hex 0x18 0x7f with deleting everything to the left of the cursor
+bindkey "^X\\x7f" backward-kill-line
+
+# adds redo
+bindkey "^X^_" redo
+export PATH="$HOME/.bin:$PATH"
+
+plugins=(
+  git
+  git-flow
+  git-extras
+  osx
+  brew
+  emoji
+  vscode
+)
+
+# Load Zsh tools for syntax highlighting and autosuggestions
+HOMEBREW_FOLDER="/usr/local/share"
+source "$HOMEBREW_FOLDER/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$HOMEBREW_FOLDER/zsh-history-substring-search/zsh-history-substring-search.zsh"
+source "$HOMEBREW_FOLDER/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
