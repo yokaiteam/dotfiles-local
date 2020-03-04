@@ -1,33 +1,61 @@
+[commit]
+  #gpgsign = true
+[user]
+  #signingkey = XXXXXXXXXX
+  name = Michael Zumstein
+  email = zumi@yokai.ch
 [alias]
-  st = status
-  ci = commit
-  co = checkout
   br = branch
   a = add -A .
   l = log --pretty=colored
-
+  # Short History (tags, last 2 commits and related branches)
+  sh = log --graph --all --simplify-by-decoration --decorate --pretty=format:'%Cred%h%Creset - %C(yellow)%cd%Creset -%C(green)%d%Creset %s %C(bold blue)<%an>%Creset' --date=short
+  # Short History (tags, last 2 commits and related branches) using relative date
+  shr = log --graph --all --simplify-by-decoration --decorate --pretty=format:'%Cred%h%Creset - %C(yellow)%cd%Creset -%C(green)%d%Creset %s %C(bold blue)<%an>%Creset' --date=relative
+  # Full history graph
+  fh = log --graph --all --pretty=format:'%Cred%h%Creset - %C(yellow)%cd%Creset -%C(green)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=short
+  # Full History with relative date
+  fhr = log --graph --all --pretty=format:'%Cred%h%Creset - %C(yellow)%cd%Creset -%C(green)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  # Show diffs of recent changes
+  news = log --word-diff=color -p HEAD@{1}..HEAD@{0}
+  st = status --short --branch
+  # Show a release log
+  releasenotes = log --pretty=format:'- %s%n%b' --since='$(git show -s --format=%ad `git rev-list --tags --max-count=1`)'
+  # List all aliases
+  alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+[push]
+  default = matching
+[difftool "Kaleidoscope"]
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[diff]
+  tool = Kaleidoscope
+[difftool]
+  prompt = false
+[mergetool "Kaleidoscope"]
+  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+  trustExitCode = true
+[mergetool]
+  prompt = false
+[merge]
+  tool = Kaleidoscope
+[core]
+  editor = code 
+  excludesfile = /Users/nue/.gitignore
+  
 [pretty]
   colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
-
 [color "branch"]
-
   current = yellow reverse
   local = yellow
   remote = green
 
 [color "diff"]
-
   meta = yellow bold
   frag = magenta bold # line info
   old = red # deletions
   new = green # additions
 
 [color "status"]
-
   added = yellow
   changed = green
   untracked = cyan
-
-[user]
-  name = Michael Zumstein
-  email = zumi@yokai.ch
