@@ -4,6 +4,8 @@
   #signingkey = XXXXXXXXXX
   name = Michael Zumstein
   email = zumi@yokai.ch
+[includeIf "gitdir:~/Projects/sbb/sbb-bitbucket/"]
+    path = ~/Projects/sbb/sbb-bitbucket/.gitconfig
 [alias]
   br = branch
   a = add -A .
