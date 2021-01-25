@@ -4,6 +4,7 @@
   #signingkey = XXXXXXXXXX
   name = Michael Zumstein
   email = zumi@yokai.ch
+# Git config for SBB Bitbucket repos (uid/email)
 [includeIf "gitdir:~/Projects/sbb/sbb-bitbucket/"]
     path = ~/Projects/sbb/sbb-bitbucket/.gitconfig
 [alias]
@@ -59,3 +60,9 @@
   added = yellow
   changed = green
   untracked = cyan
+
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
